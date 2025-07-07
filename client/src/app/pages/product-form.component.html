@@ -1,0 +1,31 @@
+<div class="container mt-4">
+  <h2>{{ isEditMode ? 'Modifier' : 'Ajouter' }} un produit</h2>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label class="form-label">Nom</label>
+      <input class="form-control" formControlName="name" />
+      <div *ngIf="form.get('name')?.invalid && form.get('name')?.touched" class="text-danger">
+        Le nom est requis.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Description</label>
+      <textarea class="form-control" formControlName="description"></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Prix (€)</label>
+      <input type="number" class="form-control" formControlName="price" />
+      <div *ngIf="form.get('price')?.invalid && form.get('price')?.touched" class="text-danger">
+        Le prix est requis et doit être positif.
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-success" [disabled]="form.invalid">
+      {{ isEditMode ? 'Modifier' : 'Ajouter' }}
+    </button>
+  </form>
+</div>
+

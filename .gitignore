@@ -1,0 +1,46 @@
+# ---- Laravel ----
+/back-end/vendor/
+/back-end/node_modules/
+/back-end/.env
+/back-end/.phpunit.cache
+/back-end/.phpunit.result.cache
+/back-end/storage/*.key
+/back-end/storage/logs/
+/back-end/public/storage
+/back-end/public/hot
+/back-end/public/build
+/back-end/npm-debug.log
+/back-end/yarn-error.log
+/back-end/Homestead.*
+/back-end/auth.json
+/back-end/.idea/
+/back-end/.vscode/
+/back-end/.fleet/
+
+# ---- Angular ----
+/client/node_modules/
+/client/dist/
+/client/tmp/
+/client/out-tsc/
+/client/.angular/cache
+/client/npm-debug.log
+/client/yarn-error.log
+/client/.sass-cache/
+/client/.history/
+/client/connect.lock
+/client/coverage
+/client/libpeerconnection.log
+/client/testem.log
+/client/typings
+/client/.DS_Store
+/client/Thumbs.db
+
+# VS Code project settings (keep useful config files)
+/client/.vscode/*
+!/client/.vscode/settings.json
+!/client/.vscode/tasks.json
+!/client/.vscode/launch.json
+!/client/.vscode/extensions.json
+
+# Editors and IDEs
+/client/.idea/
