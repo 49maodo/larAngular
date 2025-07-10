@@ -12,16 +12,8 @@ class ProductController extends Controller
      */
     public function index(): \Illuminate\Http\JsonResponse
     {
-        $products = Product::all();
+        $products = Product::with('category')->get();
         return response()->json($products);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -33,9 +25,10 @@ class ProductController extends Controller
             'name' => 'required|string|max:255',
             'price' => 'required|numeric|min:0',
             'description' => 'nullable|string',
+            'category_id' => 'required|exists:categories,id',
         ]);
 
-        $product = Product::create($validatedData);
+        $product = Product::create($validatedData)->load('category');
 
         return response()->json(['message' => 'Product ajouté', $product], 201);
     }
@@ -45,20 +38,12 @@ class ProductController extends Controller
      */
     public function show($id): \Illuminate\Http\JsonResponse
     {
-        $product = Product::find($id);
+        $product = Product::with('category')->find($id);
 
         if (!$product) {
             return response()->json(['message' => 'Product not found'], 404);
         }
         return response()->json($product);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Product $product)
-    {
-        //
     }
 
     /**
@@ -71,11 +56,19 @@ class ProductController extends Controller
             'name' => 'sometimes|required|string|max:255',
             'price' => 'sometimes|required|numeric|min:0',
             'description' => 'nullable|string',
+            'category_id' => 'sometimes|required|exists:categories,id',
         ]);
 
-        $product->update($validatedData);
+//        return response()->json($validatedData);
 
-        return response()->json($product);
+        $product->update($validatedData);
+        // Recharger la relation category pour renvoyer les données mises à jour
+        $product->load('category');
+
+        return response()->json([
+            'message' => 'Product modifié',
+            'data' => $product,
+        ], 200);
     }
 
     /**

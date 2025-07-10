@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {Category} from './category.service';
 
 export interface Product {
   id?: number;
   name: string;
   description?: string;
   price: number;
+  category?: Category;
 }
 
 @Injectable({

@@ -23,6 +23,18 @@
       </div>
     </div>
 
+    <div class="mb-3">
+      <label for="category" class="form-label">Catégorie</label>
+      <select class="form-select" formControlName="category_id">
+        <option *ngFor="let category of categories" [value]="category.id">
+          {{ category.description }}
+        </option>
+      </select>
+      <div *ngIf="form.get('category_id')?.invalid && form.get('category_id')?.touched" class="text-danger">
+        La catégorie est requise.
+      </div>
+    </div>
+
     <button type="submit" class="btn btn-success" [disabled]="form.invalid">
       {{ isEditMode ? 'Modifier' : 'Ajouter' }}
     </button>

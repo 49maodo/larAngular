@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import {Product, ProductService} from '../services/product.service';
+import {Category, CategoryService} from '../services/category.service';
 
 @Component({
   selector: 'app-product-form',
@@ -14,19 +15,25 @@ export class ProductFormComponent implements OnInit {
   isEditMode = false;
   productId!: number;
   form!: FormGroup;
+  categories: Category[] = [];
 
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private productService: ProductService,
+    private categoryService: CategoryService,
     private router: Router
   ) {}
 
   ngOnInit(): void {
+    this.categoryService.getAll().subscribe(data => {
+      this.categories = data;
+    });
     this.form = this.fb.group({
       name: ['', Validators.required],
       description: [''],
-      price: [0, [Validators.required, Validators.min(0.01)]]
+      price: [0, [Validators.required, Validators.min(0.01)]],
+      category_id: [null, Validators.required]
     });
     this.route.paramMap.subscribe(params => {
       const id = params.get('id');
