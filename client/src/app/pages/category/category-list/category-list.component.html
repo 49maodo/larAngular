@@ -1,0 +1,26 @@
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center">
+
+    <h1 class="text-primary">Gestion des categories</h1>
+    <a class="btn btn-primary mb-3" routerLink="/category/add">Ajouter un categorie</a>
+  </div>
+  <table class="table table-bordered table-striped">
+    <thead class="table-dark">
+    <tr>
+      <th>#</th>
+      <th>Description</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let category of categories">
+      <td>{{ category.id }}</td>
+      <td>{{ category.description }}</td>
+      <td class="d-flex gap-2">
+        <button class="btn btn-primary" routerLink="/category/edit/{{ category.id }}">Modifier</button>
+        <button class="btn btn-danger" (click)="delete(category)">Supprimer</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

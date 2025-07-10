@@ -1,0 +1,18 @@
+<div class="container mt-4">
+  <h2>{{ isEditMode ? 'Modifier' : 'Ajouter' }} un category</h2>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+    <div class="mb-3">
+      <label class="form-label">Description</label>
+      <input class="form-control" formControlName="description"/>
+    </div>
+
+    <button type="submit" class="btn btn-success" [disabled]="form.invalid || isLoading">
+      <span *ngIf="isLoading" class="spinner-border spinner-border-sm me-2" role="status"></span>
+      {{ isLoading ? 'Chargement...' : (isEditMode ? 'Modifier' : 'Ajouter') }}
+    </button>
+
+  </form>
+</div>
+
