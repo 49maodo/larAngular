@@ -1,0 +1,34 @@
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center">
+
+    <h1 class="text-primary">Gestion des teacher</h1>
+    <a class="btn btn-primary mb-3" routerLink="/add">Ajouter un teachers</a>
+  </div>
+  <table class="table table-bordered table-striped">
+    <thead class="table-dark">
+    <tr>
+      <th>#</th>
+      <th>prenom</th>
+      <th>nom</th>
+      <th>email</th>
+      <th>speciality</th>
+      <th>hiring_date</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let teacher of teachers">
+      <td>{{ teacher.id }}</td>
+      <td>{{ teacher.first_name }}</td>
+      <td>{{ teacher.last_name }}</td>
+      <td>{{ teacher.email }}</td>
+      <td>{{ teacher.speciality }}</td>
+      <td>{{ teacher.hiring_date}}</td>
+      <td class="d-flex gap-2">
+        <button class="btn btn-primary" routerLink="/edit/{{ teacher.id }}">Modifier</button>
+        <button class="btn btn-danger" (click)="delete(teacher)">Supprimer</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

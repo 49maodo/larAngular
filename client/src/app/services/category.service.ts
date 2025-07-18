@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 export interface Category {
-  id: number;
+  id?: number;
   description: string;
 }
 
